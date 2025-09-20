@@ -1,0 +1,59 @@
+html {
+	font-size: 16px;
+}
+
+body {
+	touch-action: manipulation;
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+body,
+#app,
+.ts-app-layout.is-fullscreen {
+	height: 100vh;
+	height: 100dvh;
+	overflow: hidden;
+}
+
+.ts-container.is-very-narrow {
+	--width: 480px;
+}
+
+.hover-cursor-pointer {
+	cursor: pointer;
+}
+
+.ts-text.is-center-aligned {
+	text-align: center;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	width: 1.18em;
+	color: var(--accent-color, inherit);
+	display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+	transition: transform .2s ease, opacity .2s ease;
+}
+.slide-left-enter-from {
+	transform: none;
+	opacity: .01;
+}
+.slide-left-leave-to {
+	transform: translateX(50vw);
+	opacity: .01;
+}
+.slide-right-enter-from {
+	transform: none;
+	opacity: .01;
+}
+.slide-right-leave-to {
+	transform: translateX(-50vw);
+	opacity: .01;
+}
