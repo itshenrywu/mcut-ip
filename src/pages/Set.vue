@@ -304,6 +304,10 @@ li {
 	margin-bottom: 1rem;
 }
 
+.ts-select {
+	width: 10rem;
+}
+
 .ts-select::after {
 	font-family: icomoon;
 	content: "\e901";

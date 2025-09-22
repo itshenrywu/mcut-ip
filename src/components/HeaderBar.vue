@@ -55,6 +55,7 @@ const getBackUrl = computed(() => {
 <style scoped>
 h1 {
 	font-size: unset;
+	height: 1.8rem;
 }
 
 header {
