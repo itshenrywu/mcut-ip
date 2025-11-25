@@ -23,11 +23,6 @@ export function utils() {
 			switch_lang: ['English', '中文'],
 			not_found_title: ['找不到這個頁面', '404 Not Found'],
 			not_found_text: ['請確認您輸入的網址是否正確。', 'Please check if the URL you entered is correct.'],
-			usage: ['網路使用流量', 'Internet Usage'],
-			update_at: ['更新於', 'Last updated: '],
-			loading: ['讀取中...', 'Loading...'],
-			no_data: ['暫無資料', 'Currently no data'],
-			banned: ['今日已鎖定', 'Temporary banned'],
 			set: ['網路設定教學', 'Internet Setup Guide'],
 		}[text]?.[is_en.value || 0]
 	}

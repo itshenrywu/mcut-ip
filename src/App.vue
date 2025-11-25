@@ -43,6 +43,8 @@ export default {
 					return
 				}
 
+				document.body.focus()
+
 				const routeIndex = {
 					'Index': 1,
 					'RoomSelect': 2,

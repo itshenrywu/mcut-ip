@@ -37,31 +37,6 @@
 				</div>
 			</div>
 
-			<div class="ts-box is-fluid">
-				<div class="ts-content">
-					<div class="ts-grid is-middle-aligned is-compact has-bottom-spaced-small">
-						<div class="column is-fluid">
-							<h2 class="ts-text is-label">{{ _('usage') }}</h2>
-						</div>
-						<div class="column">
-							<div class="ts-text is-secondary is-tiny"><span v-if="usage.update_at">{{ _('update_at') }} {{ usage.update_at }}</span><span v-else>&nbsp;</span></div>
-						</div>
-					</div>
-					<div class="ts-progress" :class="['is-' + usage.status]">
-						<div class="bar" :style="{ '--value': usage.status == 'success' ? usage.percent : 100, 'background': usageColor }">
-							<div class="text is-center-aligned" v-if="usage.status == 'loading'">{{ _('loading') }}</div>
-							<div class="text is-center-aligned" v-else-if="usage.status == 'no_data'">{{ _('no_data') }}</div>
-							<div class="text is-center-aligned" v-else-if="usage.status == 'banned'">{{ _('banned') }}</div>
-							<div class="text" v-else-if="usage.percent >= 1">{{ usage.percent }}%</div>
-						</div>
-					</div>
-					<div class="progress-text">
-						<div v-if="usage.status == 'success' || usage.status == 'banned'" :style="{ 'width': usage.percent + '%' }">{{ usage.used }}</div>
-						<div> / 8GB</div>
-					</div>
-				</div>
-			</div>
-
 			<router-link class="ts-button is-wide" to="/set">{{ _('how_to') }}</router-link>
 		</template>
 	</div>
@@ -75,29 +50,6 @@
 h2 {
 	margin: 0;
 	font-weight: unset;
-}
-
-.ts-progress .bar {
-	color: var(--ts-static-gray-50);
-}
-
-.progress-text {
-	display: flex;
-}
-
-.progress-text div {
-	text-align: right;
-	font-size: .8rem;
-	color: var(--ts-gray-500);
-}
-
-.progress-text div:last-child {
-	flex: 1;
-	min-width: 2.5rem;
-}
-
-.ts-progress .bar {
-	justify-content: center;
 }
 
 .gradient {
