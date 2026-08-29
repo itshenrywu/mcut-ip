@@ -276,7 +276,7 @@
 
 <script setup>
 import { useHead } from '@unhead/vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { utils } from '../composables/utils.js'
 const { is_en } = utils()
 
@@ -284,10 +284,16 @@ useHead({
 	title: '網路設定教學 | 明志科技大學宿舍有線網路',
 })
 
+const OS_LIST = ['w11', 'w10', 'mac', 'ap']
 const os = ref('w11')
 
 onMounted(() => {
-	
+	const saved = localStorage.getItem('os')
+	if (OS_LIST.includes(saved)) os.value = saved
+});
+
+watch(os, (value) => {
+	localStorage.setItem('os', value)
 });
 </script>
 

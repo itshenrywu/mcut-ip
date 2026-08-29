@@ -14,6 +14,9 @@
 					<div class="item is-text" v-else-if="$route.path === '/set'">
 						<h1>{{ _('set') }}</h1>
 					</div>
+					<div class="item is-text" v-else-if="$route.path === '/debug'">
+						<h1>{{ _('debug') }}</h1>
+					</div>
 					<div class="item is-text" v-else-if="currentDorm && currentGroup">
 						<h1>
 							<span v-html="currentDorm.name[is_en?2:0]"></span>

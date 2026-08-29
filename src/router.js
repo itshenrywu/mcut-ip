@@ -2,6 +2,7 @@ import Index from './pages/Index.vue'
 import RoomSelect from './pages/RoomSelect.vue'
 import Room from './pages/Room.vue'
 import Set from './pages/Set.vue'
+import Debug from './pages/Debug.vue'
 import NotFound from './pages/NotFound.vue'
 import { utils } from './composables/utils.js'
 const { _, getRoomList, getRoomName, dorms } = utils()
@@ -56,6 +57,11 @@ if(import.meta.env.SSR) {
 	routes.push({
 		path: '/set',
 		component: Set,
+	})
+
+	routes.push({
+		path: '/debug',
+		component: Debug,
 	})
 	
 	routes.push({
@@ -126,6 +132,11 @@ else {
 			path: '/set',
 			name: 'Set',
 			component: Set
+		},
+		{
+			path: '/debug',
+			name: 'Debug',
+			component: Debug
 		},
 		{
 			path: '/:pathMatch(.*)*',

@@ -8,8 +8,9 @@
 				</router-link>
 			</div>
 		</div>
-		<div class="has-top-spaced">
+		<div class="has-top-spaced ts-wrap is-vertical is-compact">
 			<router-link class="ts-button is-fluid" to="/set">{{ _('how_to') }}</router-link>
+			<router-link class="ts-button is-fluid is-secondary" to="/debug">{{ _('debug') }}</router-link>
 		</div>
 	</div>
 </template>

@@ -31,7 +31,6 @@
 						<div>
 							<h2 class="ts-text is-label">{{ _('dns') }}</h2>
 							<div class="ts-header is-huge">210.240.232.1</div>
-							<div class="ts-header is-huge">210.240.232.2</div>
 						</div>
 					</div>
 				</div>
@@ -76,7 +75,7 @@ h2 {
 </style>
 
 <script setup>
-import { computed, ref, watch, onMounted } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useRouter, useRoute } from 'vue-router'
 import { utils } from '../composables/utils.js'
@@ -193,90 +192,5 @@ watch(currentBed, (newBed) => {
 			}
 		})
 	}
-})
-
-const usageColor = computed(() => {
-	if (usage.value.status == 'loading' || usage.value.status == 'no_data') {
-		return '#7f8c8d'
-	}
-	if (usage.value.status == 'banned') {
-		return '#e74c3c'
-	}
-	if (usage.value.percent >= 90) {
-		return '#e67e22'
-	}
-	if (usage.value.percent >= 80) {
-		return '#f39c12'
-	}
-	if (usage.value.percent >= 70) {
-		return '#f1c40f'
-	}
-	return '#2ecc71'
-})
-
-const formatDate = (date) => {
-	const d = new Date(date.replace(' ', 'T'))
-	const month = d.getMonth() + 1
-	const day = d.getDate()
-	const hours = d.getHours().toString().padStart(2, '0')
-	const minutes = d.getMinutes().toString().padStart(2, '0')
-	return `${month}/${day} ${hours}:${minutes}`
-}
-
-const usage_all = ref([])
-
-const usage = computed(() => {
-	if (!currentBed.value || usage_all.value.length === 0) {
-		return {
-			status: 'no_data'
-		}
-	}
-	const ip = networkInfo.value.gateway + '.' + parseInt(networkInfo.value.ip + beds.value[currentBed.value - 1][1])
-	const data = usage_all.value.find(u => u[0] === ip)
-	if (!data) {
-		return {
-			status: 'no_data'
-		}
-	}
-	const usedBytes = parseFloat(data[1]) * (data[1].includes('GB') ? 1024 * 1024 * 1024 : data[1].includes('MB') ? 1024 * 1024 : data[1].includes('KB') ? 1024 : 1)
-	const percent = Math.min(100, Math.round((usedBytes / (8 * 1024 * 1024 * 1024)) * 10000) / 100)
-	let status = 'success'
-	if(data[2] === 1) {
-		status = 'banned'
-	}
-	else if(data[1] == '0 B') {
-		status = 'no_data'
-	}
-	return {
-		status: status,
-		used: data[1],
-		update_at: formatDate(data[3]),
-		percent: percent
-	}
-})
-
-const getUsage = async () => {
-	usage_all.value = []
-	let ip_list = beds.value.map(b => {
-		return networkInfo.value.gateway + '.' + parseInt(networkInfo.value.ip + b[1])
-	}).join('_')
-	let usageData = JSON.parse(localStorage.getItem('usage_' + ip_list))
-	if(new Date(usageData?.update_at).getTime() > new Date().getTime() - 1000 * 30) {
-		usage_all.value = usageData.data
-		return
-	}
-	fetch(`https://mcut-bot.henrywu.tw/api/net/?search=${ip_list}`)
-	.then(res => res.json())
-	.then(data => {
-		usage_all.value = data
-		localStorage.setItem('usage_' + ip_list, JSON.stringify({
-			data: data,
-			update_at: new Date()
-		}))
-	})
-}
-
-onMounted(() => {
-	getUsage()
 })
 </script>

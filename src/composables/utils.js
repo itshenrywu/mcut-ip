@@ -24,6 +24,7 @@ export function utils() {
 			not_found_title: ['找不到這個頁面', '404 Not Found'],
 			not_found_text: ['請確認您輸入的網址是否正確。', 'Please check if the URL you entered is correct.'],
 			set: ['網路設定教學', 'Internet Setup Guide'],
+			debug: ['網路不通？', 'Network Troubleshooting'],
 		}[text]?.[is_en.value || 0]
 	}
 
@@ -75,7 +76,7 @@ export function utils() {
 			rooms: [
 				{
 					name: '1F',
-					rooms: [[1, 14], [16, 16], [21, 26]]
+					rooms: [[1, 26]]
 				},
 				{
 					name: '2F',
@@ -95,7 +96,7 @@ export function utils() {
 			rooms: [
 				{
 					name: '1F',
-					rooms: [[1, 7], [9, 20], [22, 29]]
+					rooms: [[1, 29]]
 				},
 				{
 					name: '2F',

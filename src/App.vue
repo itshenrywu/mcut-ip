@@ -51,6 +51,7 @@ export default {
 					'Room': 3,
 					'RoomBed': 3,
 					'Set': 5,
+					'Debug': 5,
 				}
 
 				if(routeIndex[to.name] == routeIndex[from.name] || to.name == 'NotFound' || from.name == 'NotFound') {
